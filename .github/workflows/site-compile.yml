@@ -5,6 +5,7 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
+# Permessi di base per leggere il codice
 permissions:
   contents: read
 
@@ -28,12 +29,12 @@ jobs:
         run: npm ci
 
       - name: Setup Pages
-        id: pages
         uses: actions/configure-pages@v5
 
+      # Rimosso VITE_BASE: in questo modo Vite usa il fallback '/' (la radice corretta per i siti <user>.github.io)
       - name: Build del sito
         working-directory: ${{ env.SITE_DIR }}
-        run: npm run build -- --base="${{ steps.pages.outputs.base_path }}/"
+        run: npm run build
 
       - uses: actions/upload-pages-artifact@v3
         with:
@@ -49,7 +50,5 @@ jobs:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - id: deployment
-        uses: actions/deploy-pages@v4
       - id: deployment
         uses: actions/deploy-pages@v4
