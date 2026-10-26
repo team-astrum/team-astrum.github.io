@@ -15,8 +15,6 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -27,13 +25,16 @@ jobs:
         working-directory: ${{ env.SITE_DIR }}
         run: npm ci
 
+      # 1. Sposta configure-pages PRIMA della build e assegnagli un ID
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v5
+
+      # 2. Passa la base calcolata da GitHub direttamente a Vite
       - name: Build del sito
         working-directory: ${{ env.SITE_DIR }}
-        run: npm run build
-        env:
-          VITE_BASE: /${{ github.event.repository.name }}/
+        run: npm run build -- --base="${{ steps.pages.outputs.base_path }}/"
 
-      - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ${{ env.SITE_DIR }}/dist
