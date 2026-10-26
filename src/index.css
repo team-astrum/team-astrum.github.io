@@ -1,0 +1,27 @@
+@import "tailwindcss";
+
+:root {
+  --bg-color: #F9FAFB;
+  --txt-color: #1F2937;
+  --light-accent-color: #2563EB;
+  --dark-accent-color: #1E3A87;
+  --deco-color: #E5E9ED;
+  --txt-gray: #626973;
+
+  --red-color: #9B0014;
+  --green-color: #1F7A6D;
+  --orange-color: #B87900;
+  --purple-color: #8957E5;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--txt-color);
+  font-family: "Inter Variable", sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a:focus-visible, button:focus-visible {
+  outline: 3px solid var(--light-accent-color);
+  outline-offset: 2px;
+}
