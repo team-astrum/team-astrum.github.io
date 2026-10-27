@@ -59,7 +59,7 @@ export default function App() {
           </div>
         </nav>
       </header>
-      <main className="pt-8"><View /></main>
+      <main className="pt-5"><View /></main>
     </div>
   )
 }
