@@ -94,5 +94,5 @@ export const utilizzi = {
 // Documenti generali: validi per tutto il progetto, non legati a una milestone
 export const generalDocs = [
   { titolo: 'Glossario', descrizione: 'Definizione dei termini specifici del dominio del progetto.', file: '/glossario.pdf' },
-  { titolo: 'Norme di Progetto', descrizione: 'Procedure, strumenti e regole di lavoro del gruppo (Way of Working).', file: 'norme-di-progetto.pdf' },
+  { titolo: 'Norme di Progetto', descrizione: 'Procedure, strumenti e regole di lavoro del gruppo (Way of Working).', file: '/norme-di-progetto.pdf' },
 ]
