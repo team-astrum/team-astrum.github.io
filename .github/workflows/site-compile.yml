@@ -7,6 +7,7 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
 
+# Permessi di base per leggere il codice
 permissions:
   contents: read
 
@@ -36,8 +37,6 @@ jobs:
       - name: Build del sito
         working-directory: ${{ env.SITE_DIR }}
         run: npm run build
-        env:
-          VITE_BASE: /${{ github.event.repository.name }}/
 
       # Configurazione per GitHub Pages
       - name: Configura GitHub Pages
