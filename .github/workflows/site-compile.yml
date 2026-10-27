@@ -3,6 +3,8 @@ name: Compila e pubblica il sito
 on:
   push:
     branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
   workflow_dispatch:
 
 permissions:
@@ -15,31 +17,43 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # Checkout del repository
       - uses: actions/checkout@v4
 
+      # Setup dell'ambiente Node.js
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
           cache-dependency-path: ${{ env.SITE_DIR }}/package-lock.json
 
+      # Installazione pulita ed esatta delle dipendenze
       - name: Installa dipendenze
         working-directory: ${{ env.SITE_DIR }}
         run: npm ci
 
+      # Compilazione del sito web
       - name: Build del sito
         working-directory: ${{ env.SITE_DIR }}
         run: npm run build
         env:
           VITE_BASE: /${{ github.event.repository.name }}/
 
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
+      # Configurazione per GitHub Pages
+      - name: Configura GitHub Pages
+        uses: actions/configure-pages@v5
+        if: github.event_name != 'pull_request'
+      
+      # Prepara la cartella del sito compilato come artefatto da pubblicare
+      - name: Carica artefatto Pages
+        uses: actions/upload-pages-artifact@v3
+        if: github.event_name != 'pull_request'
         with:
           path: ${{ env.SITE_DIR }}/dist
 
   deploy:
     needs: build
+    if: github.event_name != 'pull_request'
     runs-on: ubuntu-latest
     permissions:
       pages: write

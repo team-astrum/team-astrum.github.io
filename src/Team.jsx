@@ -6,25 +6,23 @@ const initials = (n) => n.split(' ').map((p) => p[0]).slice(0, 2).join('')
 export default function Team() {
   return (
     <div>
-      <ul className="flex flex-wrap justify-center gap-4">
+      <ul className="grid gap-px bg-(--deco-color) sm:grid-cols-2 lg:grid-cols-3">
         {members.map((m) => {
-          const isLead = m.currentRole.toLowerCase() === 'responsabile'
+          const mainRole = Object.entries(m.hours).sort((a, b) => b[1] - a[1])[0]
           return (
-            <li key={m.github} className="w-full sm:w-[calc(50%-0.5rem)] lg:w-[calc(25%-0.75rem)]">
-              <a href={`https://github.com/${m.github}`} target="_blank" rel="noreferrer"
-                aria-label={`${m.name}, profilo GitHub`}
-                className="group flex h-full flex-col items-center border border-(--deco-color) bg-white p-6 text-center transition-colors hover:border-(--light-accent-color)">
-                <div className="relative grid h-20 w-20 shrink-0 place-items-center bg-ink text-xl font-black text-white">
-                  {initials(m.name)}
-                  <img src={`https://github.com/${m.github}.png?size=160`} alt="" className="absolute rounded-full inset-0 h-full w-full object-cover"
-                    onError={(e) => (e.currentTarget.style.display = 'none')} />
-                </div>
-                <h2 className="mt-4 text-lg font-bold">{m.name}</h2>
-                <p className={`mt-1 text-sm text-(--txt-gray)`}>{m.matr}</p>
-                <p className={`mt-4 text-m ${isLead ? 'text-(--light-accent-color)' : 'text-(--dark-accent-color)'}`}>
-                  {m.currentRole}
-                </p>
-              </a>
+            <li key={m.github} className="flex gap-4 bg-white p-5">
+              <div className="relative grid h-14 w-14 shrink-0 place-items-center font-black text-white">
+                {initials(m.name)}
+                <img src={`https://github.com/${m.github}.png?size=128`} alt={m.name} className="absolute inset-0 h-full w-full object-cover rounded-full"
+                  onError={(e) => (e.currentTarget.style.display = 'none')} />
+              </div>
+              <div>
+                <h2 className="font-bold">{m.name} - {m.matr}</h2>
+                <p className="text-sm">Ruolo attuale: {m.currentRole}</p>
+                <a className="mt-1 inline-block text-sm font-bold underline" href={`https://github.com/${m.github}`} target="_blank" rel="noreferrer">
+                  github.com/{m.github}
+                </a>
+              </div>
             </li>
           )
         })}

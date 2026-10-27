@@ -57,7 +57,7 @@ export default function Dashboard() {
               <p className="mt-2 text-3xl font-black">{m.progress}%</p>
               <p className="text-sm font-bold">{m.id}</p>
               <p className="hidden text-sm text-(--txt-gray) sm:block">{m.label}</p>
-              <p className="text-sm text-(--txt-gray)"><span className="hidden lg:inline">Scadenza:</span> {m.date}</p>
+              <p className="text-sm text-(--txt-gray)">Scadenza: {new Date(m.date).toLocaleDateString('it-IT')}</p>
             </li>
           ))}
         </ol>
@@ -66,7 +66,7 @@ export default function Dashboard() {
       <dl className="grid grid-cols-2 gap-px bg-(--deco-color) lg:grid-cols-4">
         {[
           ['Budget preventivato', eur(budget)],
-          ['Speso finora', `${eur(spent)}`, budget != null ? `(${Math.round((spent / budget) * 100)}%)` : ""],
+          ['Speso finora', `${eur(spent)} (${Math.round((spent / budget) * 100)}%)`],
           ['Residuo', eur(budget - spent)],
           ['CPI / SPI', cpi ? `${cpi.toFixed(2)} / ${spi.toFixed(2)}` : '-', index(Math.min(cpi ?? 0, spi ?? 0), 1)],
         ].map(([t, v, c]) => (
@@ -87,9 +87,7 @@ export default function Dashboard() {
               <CartesianGrid vertical={false} stroke="#D3D9DF" />
               <XAxis dataKey="matricola" interval={0} tick={{ fontSize: 12 }} />
               <YAxis width={32} domain={[0, hourBounds.max + 5]} />
-              <Tooltip
-                labelStyle={{ fontWeight: "bold" }}
-                labelFormatter={(value, payload) => {
+              <Tooltip labelFormatter={(value, payload) => {
                   const item = payload?.[0]?.payload;
                   return item ? `${item.name}` : value; 
                 }}
@@ -104,13 +102,13 @@ export default function Dashboard() {
 
         <Panel title="Consumo del budget" note="Valori cumulativi per periodo.">
           <ResponsiveContainer>
-            <LineChart data={periods} margin={{ top: 8, right: 8, bottom: 0, left: 12 }}>
+            <LineChart data={periods} margin={{ top: 8, right: 12, bottom: 0, left: 12 }}>
               <CartesianGrid vertical={false} stroke="#D3D9DF" />
               <XAxis dataKey="label" interval={0} />
               <YAxis width={36} tickFormatter={(v) => `${v / 1000}k`} />
               <Tooltip formatter={(v) => eur(v)} />
               <Legend />
-              <Line dataKey="pv" name="Pianificato" stroke="#81878F" strokeDasharray="5 4" dot={false} strokeWidth={2} />
+              <Line dataKey="pv" name="Pianificato" stroke="#626973" strokeDasharray="5 4" dot={false} strokeWidth={2} />
               <Line dataKey="ev" name="Conseguito" stroke="#1F7A6D" strokeWidth={3} />
               <Line dataKey="ac" name="Speso" stroke="#9B0014" strokeWidth={3} />
             </LineChart>
@@ -128,9 +126,9 @@ export default function Dashboard() {
                 <CartesianGrid vertical={false} stroke="#D3D9DF" />
                 <XAxis dataKey="ruolo" interval={0} tick={{ fontSize: 12 }} />
                 <YAxis width={32} />
-                <Tooltip labelStyle={{ fontWeight: "bold" }} />
+                <Tooltip />
                 <Legend />
-                <Bar dataKey="Pianificate" fill="#81878F" />
+                <Bar dataKey="Pianificate" fill="#E5E9ED" />
                 <Bar dataKey="Consuntivate" fill="#1E3A87" />
               </BarChart>
             </ResponsiveContainer>
