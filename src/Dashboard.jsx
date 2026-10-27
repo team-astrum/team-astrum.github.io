@@ -108,7 +108,7 @@ export default function Dashboard() {
               <YAxis width={36} tickFormatter={(v) => `${v / 1000}k`} />
               <Tooltip formatter={(v) => eur(v)} />
               <Legend />
-              <Line dataKey="pv" name="Pianificato" stroke="#626973" strokeDasharray="5 4" dot={false} strokeWidth={2} />
+              <Line dataKey="pv" name="Pianificato" stroke="#81878F" strokeDasharray="5 4" dot={false} strokeWidth={2} />
               <Line dataKey="ev" name="Conseguito" stroke="#1F7A6D" strokeWidth={3} />
               <Line dataKey="ac" name="Speso" stroke="#9B0014" strokeWidth={3} />
             </LineChart>
@@ -128,7 +128,7 @@ export default function Dashboard() {
                 <YAxis width={32} />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="Pianificate" fill="#E5E9ED" />
+                <Bar dataKey="Pianificate" fill="#81878F" />
                 <Bar dataKey="Consuntivate" fill="#1E3A87" />
               </BarChart>
             </ResponsiveContainer>
