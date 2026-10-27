@@ -41,23 +41,27 @@ export const group = {
 
 // Milestone: progresso 0–100%
 export const milestones = [
-  { id: 'Candidatura', label: null, date: '2026-10-30', progress: 25 },
-  { id: 'RTB', label: 'Requirements and Technology Baseline', date: null, progress: 0 },
-  { id: 'PB', label: 'Product Baseline', date: null, progress: 0 },
+  { id: 'Candidatura', label: null, date: '2026-10-30', progress: 75 },
+  { id: 'RTB', label: 'Requirements and Technology Baseline', date: '2027-02-19', progress: 0 },
+  { id: 'PB', label: 'Product Baseline', date: '2027-04-16', progress: 0 },
 ]
 
 export const hourBounds = { min: 80, max: 95 }    // Ore produttive per persona: 80-95
 
 // Valori cumulativi in euro: PV = pianificato, EV = conseguito, AC = speso
 export const periods = [
-  { label: 'S1', pv: null, ev: null, ac: null },
-  { label: 'S2', pv: null, ev: null, ac: null },
-  { label: 'S3', pv: null, ev: null, ac: null },
-  { label: 'S4', pv: null, ev: null, ac: null },
-  { label: 'S5', pv: null, ev: null, ac: null },
-  { label: 'S6', pv: null, ev: null, ac: null },
-  { label: 'S7', pv: null, ev: null, ac: null },
-  { label: 'S8', pv: null, ev: null, ac: null },
+  { label: 'S1', pv: 1127, ev: null, ac: null },
+  { label: 'S2', pv: 2254, ev: null, ac: null },
+  { label: 'S3', pv: 3381, ev: null, ac: null },
+  { label: 'S4', pv: 4508, ev: null, ac: null },
+  { label: 'S5', pv: 5072, ev: null, ac: null },
+  { label: 'S6', pv: 5636, ev: null, ac: null },
+  { label: 'S7', pv: 6200, ev: null, ac: null },
+  { label: 'S8', pv: 6764, ev: null, ac: null },
+  { label: 'S9', pv: 8267, ev: null, ac: null },
+  { label: 'S10', pv: 9770, ev: null, ac: null },
+  { label: 'S11', pv: 11273, ev: null, ac: null },
+  { label: 'S12', pv: 12775, ev: null, ac: null },
 ]
 
 export const issuesRepo = 'team-astrum/Documentazione'    // Repository da cui leggere le issue aperte
@@ -65,8 +69,8 @@ export const issuesRepo = 'team-astrum/Documentazione'    // Repository da cui l
 
 // Preventivo: ore pianificate per ruolo (totale di gruppo)
 export const plannedHours = {
-  responsabile: 60, amministratore: 60, analista: 120,
-  progettista: 110, programmatore: 160, verificatore: 120,
+  responsabile: 55, amministratore: 55, analista: 70,
+  progettista: 100, programmatore: 195, verificatore: 190,
 }
 
 // Costo orario per ruolo
@@ -79,10 +83,16 @@ export const roles = {
   verificatore: { label: 'Verificatore', rate: 15 },
 }
 
-export const docsBase = 'https://team-astrum.github.io/Documentazione/'   // Path di base dei documenti
+export const docsBase = 'https://team-astrum.github.io/Documentazione'   // Path di base dei documenti
 
 // Raggruppamento dei documenti dentro ogni baseline (campo "tipo" del template)
 export const utilizzi = {
   esterno: 'Documenti esterni',
   interno: 'Documenti interni',
 }
+
+// Documenti generali: validi per tutto il progetto, non legati a una milestone
+export const generalDocs = [
+  { titolo: 'Glossario', descrizione: 'Definizione dei termini specifici del dominio del progetto.', file: '/glossario.pdf' },
+  { titolo: 'Norme di Progetto', descrizione: 'Procedure, strumenti e regole di lavoro del gruppo (Way of Working).', file: 'norme-di-progetto.pdf' },
+]

@@ -112,7 +112,7 @@ export default function Issues() {
                     </td>
                     <td className="whitespace-nowrap py-3 pr-4">{who(r.assignee)}</td>
                     <td className="whitespace-nowrap py-3 text-right tabular-nums">
-                      {r.due ? new Date(r.due).toLocaleDateString('it-IT') : '-'}
+                      {r.due ? r.due : '-'}
                     </td>
                   </tr>
                 )

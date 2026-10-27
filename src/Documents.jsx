@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react'
-import { docsBase, milestones, utilizzi } from './data'
+import { docsBase, milestones, utilizzi, generalDocs } from './data'
 
-const format = (iso) => (iso ? new Date(`${iso}T00:00:00`).toLocaleDateString('it-IT') : '-')
+const format = (iso) => iso ?? '-'
 const order = milestones.map(m => m.id)
 const rank = (s) => (order.includes(s) ? order.indexOf(s) : s.toLowerCase().startsWith('verbali') ? 100 : 50)   // Ordinamento delle baselines note
 const bySection = (a, b) => rank(a) - rank(b) || a.localeCompare(b)
+const GENERAL = 'Generali'
+const href = (f) => (/^https?:\/\//.test(f) ? f : `${docsBase}${f}`)
 
 // Funzione per il popolamento dei dati propri di ciascun documento
 function Meta({ d }) {
@@ -34,7 +36,7 @@ function Meta({ d }) {
 function List({ titolo, docs }) {
   return (
     <section>
-      <h2 className="mb-1 text-sm font-bold">{titolo}</h2>
+      <h2 className="mb-1 text-sm font-bold text-(--dark-accent-color)">{titolo}</h2>
       <ul className="bg-white">
         {docs.map((d) => (
           <li key={d.file} className="flex items-center justify-between gap-3 p-3 border-b border-(--deco-color)">
@@ -50,10 +52,30 @@ function List({ titolo, docs }) {
   )
 }
 
+// Scheda statica: non dipende dal manifest
+function General() {
+  return (
+    <section>
+      <h2 className="mb-1 text-sm font-bold text-(--dark-accent-color)">Validi per tutto il progetto</h2>
+      <ul className="bg-white">
+        {generalDocs.map((d) => (
+          <li key={d.file} className="flex items-center justify-between gap-3 p-3 border-b border-(--deco-color)">
+            <div>
+              <span className="block font-bold">{d.titolo}</span>
+              <span className="text-sm text-(--txt-gray)">{d.descrizione}</span>
+            </div>
+            <a className="text-sm font-bold underline" href={href(d.file)} target="_blank" rel="noreferrer">PDF</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
 export default function Documents() {
   const [docs, setDocs] = useState(null)
   const [error, setError] = useState(false)
-  const [tab, setTab] = useState(null)
+  const [tab, setTab] = useState(GENERAL)
 
   // Caricamento del file JSON
   useEffect(() => {
@@ -64,15 +86,12 @@ export default function Documents() {
       .catch((err) => {setError(true)})
   }, [])
 
-  // Gestione degli errori
-  if (error) return <p className="text-(--red-color)">Impossibile caricare l'elenco dei documenti.</p>
-  if (!docs) return <p className="text-(--txt-gray)">Caricamento...</p>
-  if (!docs.length) return <p className="text-(--txt-gray)">Nessun documento ancora pubblicato.</p>
-
-  const tabs = [...new Set(docs.map((d) => d.sezione))].sort(bySection)
-  const active = tab ?? tabs[0]
-  const inTab = docs.filter((d) => d.sezione === active)
-  const isVerbali = inTab.every((d) => d.kind === 'verbale')    // Logica di raggruppamento differente per i verbali
+  const general = new Set(generalDocs.map((d) => d.file))   // I file generali non compaiono anche nelle schede automatiche
+  const autoDocs = (docs ?? []).filter((d) => !general.has(d.file))
+  const tabs = [GENERAL, ...[...new Set(autoDocs.map((d) => d.sezione))].sort(bySection)]
+  const active = tab
+  const inTab = autoDocs.filter((d) => d.sezione === active)
+  const isVerbali = inTab.length > 0 && inTab.every((d) => d.kind === 'verbale')   // Logica di raggruppamento differente per i verbali
 
   // Verbali: un gruppo per baseline di provenienza, dal più recente.
   const groups = isVerbali
@@ -100,6 +119,10 @@ export default function Documents() {
 
       <div className="mt-4 grid grid-cols-1 gap-6">
         <div className="min-w-0 space-y-5">
+          {active === GENERAL && <General />}
+          {active !== GENERAL && error && <p className="text-(--red-color)">Impossibile caricare l'elenco dei documenti.</p>}
+          {active !== GENERAL && !error && !docs && <p className="text-(--txt-gray)">Caricamento...</p>}
+          {active !== GENERAL && docs && inTab.length === 0 && <p className="text-(--txt-gray)">Nessun documento in questa scheda.</p>}
           {groups.filter(([, list]) => list.length).map(([label, list]) => (
             <List key={label} titolo={label} docs={list} />
           ))}

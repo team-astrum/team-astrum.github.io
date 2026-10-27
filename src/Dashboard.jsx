@@ -57,7 +57,7 @@ export default function Dashboard() {
               <p className="mt-2 text-3xl font-black">{m.progress}%</p>
               <p className="text-sm font-bold">{m.id}</p>
               <p className="hidden text-sm text-(--txt-gray) sm:block">{m.label}</p>
-              <p className="text-sm text-(--txt-gray)">Scadenza: {new Date(m.date).toLocaleDateString('it-IT')}</p>
+              <p className="text-sm text-(--txt-gray)">Scadenza: {m.date}</p>
             </li>
           ))}
         </ol>
