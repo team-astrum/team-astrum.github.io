@@ -41,7 +41,7 @@ export const group = {
 
 // Milestone: progresso 0–100%
 export const milestones = [
-  { id: 'Candidatura', label: null, date: '2026-10-30', progress: 75 },
+  { id: 'Candidatura', label: null, date: '2026-10-30', progress: 90 },
   { id: 'RTB', label: 'Requirements and Technology Baseline', date: '2027-02-19', progress: 0 },
   { id: 'PB', label: 'Product Baseline', date: '2027-04-16', progress: 0 },
 ]

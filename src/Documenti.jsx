@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { isTeam } from './team'
 import { docsBase, milestones, utilizzi, generalDocs, teamSections } from './data'
 
+const fileName = (f) => f.split('/').pop().toLowerCase()
 const format = (iso) => iso ?? '-'
 const order = milestones.map(m => m.id)
 const rank = (s) => (order.includes(s) ? order.indexOf(s) : /^(verbali|diari)/i.test(s) ? 100 : 50)   // Ordinamento delle baselines note
@@ -54,20 +55,26 @@ function List({ titolo, docs, meta = true }) {
 }
 
 // Scheda statica: non dipende dal manifest
-function General() {
+function General({ docs }) {
   return (
     <section>
       <h2 className="mb-1 text-sm font-bold text-(--dark-accent-color)">Validi per tutto il progetto</h2>
       <ul className="bg-white">
-        {generalDocs.map((d) => (
-          <li key={d.file} className="flex items-center justify-between gap-3 p-3 border-b border-(--deco-color)">
-            <div>
-              <span className="block font-bold">{d.titolo}</span>
-              <span className="text-sm text-(--txt-gray)">{d.descrizione}</span>
-            </div>
-            <a className="text-sm font-bold underline" href={href(d.file)} target="_blank" rel="noreferrer">PDF</a>
-          </li>
-        ))}
+        {generalDocs.map((d) => {
+          const entry = (docs ?? []).find((m) => fileName(m.file) === fileName(d.file))
+          const hasMeta = entry && ((entry.versione && entry.versione !== '-') || entry['data-modifica'])
+          return (
+            <li key={d.file} className="flex items-center justify-between gap-3 p-3 border-b border-(--deco-color)">
+              <div>
+                <span className="block font-bold">{d.titolo}</span>
+                {hasMeta
+                  ? <Meta d={{ ...entry, status: null }} />
+                  : <span className="text-sm text-(--txt-gray)">{d.descrizione}</span>}
+              </div>
+              <a className="text-sm font-bold underline" href={href(d.file)} target="_blank" rel="noreferrer">PDF</a>
+            </li>
+          )
+        })}
       </ul>
     </section>
   )
@@ -126,7 +133,7 @@ export default function Documents() {
 
       <div className="mt-4 grid grid-cols-1 gap-6">
         <div className="min-w-0 space-y-5">
-          {active === GENERAL && <General />}
+          {active === GENERAL && <General docs={docs} />}
           {active !== GENERAL && error && <p className="text-(--red-color)">Impossibile caricare l'elenco dei documenti.</p>}
           {active !== GENERAL && !error && !docs && <p className="text-(--txt-gray)">Caricamento...</p>}
           {active !== GENERAL && docs && inTab.length === 0 && <p className="text-(--txt-gray)">Nessun documento in questa scheda.</p>}
