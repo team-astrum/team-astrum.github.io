@@ -1,6 +1,5 @@
-import { members, group, roles } from './data'
+import { members } from './data'
 
-const sum = (a) => a.reduce((x, y) => x + y, 0)
 const initials = (n) => n.split(' ').map((p) => p[0]).slice(0, 2).join('')
 
 export default function Team() {
