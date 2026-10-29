@@ -81,7 +81,7 @@ export default function Dashboard() {
       </p>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-2">
-        <Panel title="Sforzo per persona" minWidth={460} note={`Ore consuntivate. Target finale ${hourBounds.min} – ${hourBounds.max}.`}>
+        <Panel title="Rendicontazione ore personali" minWidth={460} note={`Ore consuntivate. Target finale ${hourBounds.min} – ${hourBounds.max}.`}>
           <ResponsiveContainer>
             <BarChart data={effort} margin={{ top: 8, right: 8, bottom: 0, left: 4 }}>
               <CartesianGrid vertical={false} stroke="#D3D9DF" />
