@@ -12,9 +12,9 @@ const days = (iso) => Math.ceil((new Date(iso) - new Date()) / 864e5)
 function Panel({ title, note, minWidth = 480, children }) {
   return (
     <section className="min-w-0 bg-white p-5">
-      <h2 className="text-lg font-bold">{title}</h2>
+      <h2 className="text-lg font-semibold">{title}</h2>
       {note && <p className="mt-1 text-sm text-(--txt-gray)">{note}</p>}
-      <p className="mt-2 text-xs font-bold text-(--txt-gray) sm:hidden">Scorri il grafico in orizzontale</p>
+      <p className="mt-2 text-xs font-semibold text-(--txt-gray) sm:hidden">Scorri il grafico in orizzontale</p>
       <div className="mt-3 overflow-x-auto">
         <div className="h-72" style={{ minWidth }}>{children}</div>
       </div>
@@ -45,8 +45,8 @@ export default function Dashboard() {
     <div className="space-y-6">
       <section aria-label="Avanzamento per milestone" className="bg-white p-5">
         <div className="flex items-baseline justify-between">
-          <h2 className="text-lg font-bold">Avanzamento</h2>
-          {next && <p className="text-sm text-(--txt-gray)"><span className="hidden lg:inline">Prossima milestone:</span> <span className="font-bold">{next.id}</span>, tra {days(next.date)} giorni.</p>}
+          <h2 className="text-lg font-semibold">Avanzamento</h2>
+          {next && <p className="text-sm text-(--txt-gray)"><span className="hidden lg:inline">Prossima milestone:</span> <span className="font-semibold">{next.id}</span>, tra {days(next.date)} giorni.</p>}
         </div>
         <ol className="mt-5 grid grid-cols-3 gap-2">
           {milestones.map((m) => (
@@ -54,8 +54,8 @@ export default function Dashboard() {
               <div className="h-5 bg-line" role="progressbar" aria-valuenow={m.progress} aria-valuemin="0" aria-valuemax="100" aria-label={m.id}>
                 <div className="h-full bg-(--dark-accent-color)" style={{width: `${m.progress}%`}} />
               </div>
-              <p className="mt-2 text-3xl font-black">{m.progress}%</p>
-              <p className="text-sm font-bold">{m.id}</p>
+              <p className="mt-2 text-3xl font-bold">{m.progress}%</p>
+              <p className="text-sm font-semibold">{m.id}</p>
               <p className="hidden text-sm text-(--txt-gray) sm:block">{m.label}</p>
               <p className="text-sm text-(--txt-gray)">Scadenza: {m.date}</p>
             </li>
@@ -72,7 +72,7 @@ export default function Dashboard() {
         ].map(([t, v, c]) => (
           <div key={t} className="bg-white p-5">
             <dt className="text-sm text-(--txt-gray)">{t}</dt>
-            <dd className={`mt-1 text-2xl font-black ${c}`}>{v}</dd>
+            <dd className={`mt-1 text-2xl font-bold ${c}`}>{v}</dd>
           </div>
         ))}
       </dl>

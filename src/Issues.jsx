@@ -64,10 +64,10 @@ export default function Issues() {
   return (
     <section className="bg-white p-5" aria-labelledby="issues-title">
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <h2 id="issues-title" className="text-lg font-bold">Issue in sospeso</h2>
+        <h2 id="issues-title" className="text-lg font-semibold">Issue in sospeso</h2>
         {data && (
           <p className="text-sm text-(--txt-gray)">
-            {rows.length} aperte · <span className={late ? 'font-bold text-(--red-color)' : ''}>{late} in ritardo</span>
+            {rows.length} aperte · <span className={late ? 'font-semibold text-(--red-color)' : ''}>{late} in ritardo</span>
           </p>
         )}
       </div>
@@ -79,20 +79,20 @@ export default function Issues() {
       {error && (
         <p className="mt-6 text-(--red-color)">
           Impossibile leggere le issue ({error === '403' ? 'limite di richieste di GitHub raggiunto, riprova più tardi' : `errore ${error}`}).{' '}
-          <a className="font-bold underline" href={`https://github.com/${issuesRepo}/issues`} target="_blank" rel="noreferrer">Aprile su GitHub</a>
+          <a className="font-semibold underline" href={`https://github.com/${issuesRepo}/issues`} target="_blank" rel="noreferrer">Aprile su GitHub</a>
         </p>
       )}
-      {data && rows.length === 0 && <p className="mt-6 font-bold text-(--green-color)">Nessuna issue aperta.</p>}
+      {data && rows.length === 0 && <p className="mt-6 font-semibold text-(--green-color)">Nessuna issue aperta.</p>}
 
       {rows.length > 0 && (
         <div className="mt-4 overflow-x-auto">
           <table className="w-full min-w-136 text-left text-sm">
             <thead>
               <tr className="border-b border-(--txt-color)">
-                <th className="py-2 pr-4 font-bold">Stato</th>
-                <th className="py-2 pr-4 font-bold">Issue</th>
-                <th className="py-2 pr-4 font-bold">Assegnatario</th>
-                <th className="py-2 text-right font-bold">Scadenza</th>
+                <th className="py-2 pr-4 font-semibold">Stato</th>
+                <th className="py-2 pr-4 font-semibold">Issue</th>
+                <th className="py-2 pr-4 font-semibold">Assegnatario</th>
+                <th className="py-2 text-right font-semibold">Scadenza</th>
               </tr>
             </thead>
             <tbody>
@@ -100,15 +100,15 @@ export default function Issues() {
                 const s = status(r.d)
                 return (
                   <tr key={r.n} className="border-b border-(--deco-color)">
-                    <td className={`whitespace-nowrap py-3 pr-4 font-bold ${s.color}`}>
+                    <td className={`whitespace-nowrap py-3 pr-4 font-semibold ${s.color}`}>
                       <span className={`mr-4 inline-block h-2.5 w-2.5 ${s.dot}`} aria-hidden="true" />
                       {s.text}
                     </td>
                     <td className="py-3 pr-4">
                       <span className="text-(--txt-gray)">#{r.n}</span>
-                      <a className="ml-2 font-bold underline decoration-line underline-offset-2"
+                      <a className="ml-2 font-semibold underline decoration-line underline-offset-2"
                         href={r.url} target="_blank" rel="noreferrer">{r.title}</a>
-                      {r.high && <span className="ml-2 text-xs font-bold text-(--red-color)">Priorità alta</span>}
+                      {r.high && <span className="ml-2 text-xs font-semibold text-(--red-color)">Priorità alta</span>}
                     </td>
                     <td className="whitespace-nowrap py-3 pr-4">{who(r.assignee)}</td>
                     <td className="whitespace-nowrap py-3 text-right tabular-nums">
@@ -123,7 +123,7 @@ export default function Issues() {
       )}
 
       {rows.length > VISIBLE && (
-        <button onClick={() => setAll(!all)} className="mt-3 text-sm font-bold underline cursor-pointer">
+        <button onClick={() => setAll(!all)} className="mt-3 text-sm font-semibold underline cursor-pointer">
           {all ? 'Mostra meno' : `Mostra tutte (${rows.length})`}
         </button>
       )}

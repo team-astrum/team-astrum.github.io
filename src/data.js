@@ -33,15 +33,16 @@ export const members = [
 // Dati fiscali del gruppo
 export const group = {
   name: 'Astrum',
-  capitolato: 'C[X] - [Nome capitolato]',
-  proponente: '[Azienda]',
+  capitolato: 'AIRA: AI Requests Automation',
+  proponente: 'Sanmarco Informatica S.p.A.',
   email: 'astrum.unipd@gmail.com',
   repo: 'https://github.com/team-astrum/',
+  doc: 'https://www.math.unipd.it/~tullio/IS-1/2026/Progetto/C0-AIRA.pdf'
 }
 
 // Milestone: progresso 0–100%
 export const milestones = [
-  { id: 'Candidatura', label: null, date: '2026-10-30', progress: 99 },
+  { id: 'Candidatura', label: null, date: '2026-10-30', progress: 100 },
   { id: 'RTB', label: 'Requirements and Technology Baseline', date: '2027-02-19', progress: 0 },
   { id: 'PB', label: 'Product Baseline', date: '2027-04-16', progress: 0 },
 ]
