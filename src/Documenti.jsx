@@ -25,7 +25,7 @@ function Meta({ d }) {
       {parts.filter(Boolean).map((p, i) => (
         <span key={i}>
           {i > 0 && ', '}
-          <span className={p === 'Approvato' ? 'font-bold text-(--green-color)' : p === 'In bozza' ? 'font-bold text-(--orange-color)' : ''}>
+          <span className={p === 'Approvato' ? 'font-semibold text-(--green-color)' : p === 'In bozza' ? 'font-semibold text-(--orange-color)' : ''}>
             {p}
           </span>
         </span>
@@ -38,15 +38,15 @@ function Meta({ d }) {
 function List({ titolo, docs, meta = true }) {
   return (
     <section>
-      <h2 className="mb-2 text-sm font-bold text-(--dark-accent-color)">{titolo}</h2>
+      <h2 className="mb-2 text-sm font-semibold text-(--dark-accent-color)">{titolo}</h2>
       <ul className="bg-white">
         {docs.map((d) => (
           <li key={d.file} className="flex items-center justify-between gap-3 p-3 border-b border-(--deco-color)">
             <div>
-              <span className="block font-bold">{d.titolo}</span>
+              <span className="block font-semibold">{d.titolo}</span>
               {meta && <Meta d={d} className="block" />}
             </div>
-            <a className="text-sm font-bold underline" href={`${docsBase}${d.file}`} target="_blank" rel="noreferrer">PDF</a>
+            <a className="text-sm font-semibold underline" href={`${docsBase}${d.file}`} target="_blank" rel="noreferrer">PDF</a>
           </li>
         ))}
       </ul>
@@ -58,7 +58,7 @@ function List({ titolo, docs, meta = true }) {
 function General({ docs }) {
   return (
     <section>
-      <h2 className="mb-1 text-sm font-bold text-(--dark-accent-color)">Validi per tutto il progetto</h2>
+      <h2 className="mb-1 text-sm font-semibold text-(--dark-accent-color)">Validi per tutto il progetto</h2>
       <ul className="bg-white">
         {generalDocs.map((d) => {
           const entry = (docs ?? []).find((m) => fileName(m.file) === fileName(d.file))
@@ -66,12 +66,12 @@ function General({ docs }) {
           return (
             <li key={d.file} className="flex items-center justify-between gap-3 p-3 border-b border-(--deco-color)">
               <div>
-                <span className="block font-bold">{d.titolo}</span>
+                <span className="block font-semibold">{d.titolo}</span>
                 {hasMeta
                   ? <Meta d={{ ...entry, status: null }} />
                   : <span className="text-sm text-(--txt-gray)">{d.descrizione}</span>}
               </div>
-              <a className="text-sm font-bold underline" href={href(d.file)} target="_blank" rel="noreferrer">PDF</a>
+              <a className="text-sm font-semibold underline" href={href(d.file)} target="_blank" rel="noreferrer">PDF</a>
             </li>
           )
         })}
@@ -124,7 +124,7 @@ export default function Documents() {
         {tabs.map((t) => (
             <button key={t} role="tab" aria-selected={t === active}
             onClick={() => { setTab(t); }}
-            className={`px-4 py-2 text-sm font-bold cursor-pointer hover:bg-(--deco-color) ${isTeamTab(t) ? 'sm:ml-auto' : ''} ${t === active ? 'text-(--light-accent-color) border-b border-(--light-accent-color)' : ''}`}>
+            className={`px-4 py-2 text-sm font-semibold cursor-pointer hover:bg-(--deco-color) ${isTeamTab(t) ? 'sm:ml-auto' : ''} ${t === active ? 'text-(--light-accent-color) border-b border-(--light-accent-color)' : ''}`}>
             { isTeamTab(t) && <span className="fa-solid fa-unlock mr-2" aria-hidden="true"></span> }
             {t}
           </button>
