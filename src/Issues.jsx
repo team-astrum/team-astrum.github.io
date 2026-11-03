@@ -111,7 +111,7 @@ export default function Issues() {
                       {r.high && <span className="ml-2 text-xs font-semibold text-(--red-color)">Priorità alta</span>}
                     </td>
                     <td className="whitespace-nowrap py-3 pr-4">{who(r.assignee)}</td>
-                    <td className="whitespace-nowrap py-3 text-right tabular-nums">
+                    <td className="whitespace-nowrap py-3 text-right">
                       {r.due ? r.due : '-'}
                     </td>
                   </tr>
