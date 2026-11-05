@@ -37,7 +37,8 @@ export const group = {
   proponente: 'Sanmarco Informatica S.p.A.',
   email: 'astrum.unipd@gmail.com',
   repo: 'https://github.com/team-astrum/',
-  doc: 'https://www.math.unipd.it/~tullio/IS-1/2026/Progetto/C0-AIRA.pdf'
+  doc: 'https://www.math.unipd.it/~tullio/IS-1/2026/Progetto/C0-AIRA.pdf',
+  proj: 'https://github.com/orgs/team-astrum/projects/1'
 }
 
 // Milestone: progresso 0–100%
@@ -63,6 +64,12 @@ export const periods = [
   { label: 'S10', pv: 9770, ev: null, ac: null },
   { label: 'S11', pv: 11273, ev: null, ac: null },
   { label: 'S12', pv: 12775, ev: null, ac: null },
+]
+
+// Array di repository dai quali leggere le issue aperte
+export const issuesRepos = [
+  'team-astrum/Documentazione',
+  '',   // Repository del sito web
 ]
 
 export const issuesRepo = 'team-astrum/Documentazione'    // Repository da cui leggere le issue aperte

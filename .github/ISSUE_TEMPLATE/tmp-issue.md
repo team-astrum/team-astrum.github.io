@@ -9,6 +9,9 @@ assignees: ''
 ## Descrizione dell'issue
 [Spiegare in modo chiaro e conciso cosa deve essere fatto e qual è l'obiettivo]
 
+## Scadenza differente dalla milestone
+**Scadenza:** [Inserire data diversa dalla milestone]
+
 ## Criteri di accettazione (Definition of Done)
 *Il task può essere considerato concluso (Done) solo quando tutti i seguenti punti sono smarcati:*
 
