@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { members, issuesRepos, group } from './data'
 
 const VISIBLE = 5
-const KEY = 'issues-cache-v6'
+const KEY = 'issues-cache-v7'
 const TTL = 5 * 60 * 1000
 const HEADERS = { Accept: 'application/vnd.github+json' }
 
@@ -30,7 +30,7 @@ function normalize(i, repo) {
   const labels = i.labels.map((l) => l.name)
   return {
     key: `${repo}#${i.number}`, repo, n: i.number, title: i.title, url: i.html_url, due: dueOf(i), labels,
-    assignee: i.assignees?.[0]?.login ?? null,
+    assignees: (i.assignees ?? []).map((a) => a.login),
     closed: i.state === 'closed',
     closedAt: i.closed_at?.slice(0, 10) ?? null,
   }
@@ -120,7 +120,7 @@ export default function Issues() {
       return (a.d ?? 1e9) - (b.d ?? 1e9)                                        // In ordine di ritardo, quelle senza scadenza sono spostate in fondo
     })
   const shown = all ? visible : visible.slice(0, VISIBLE)
-  const who = (u) => (u ? members.find((m) => m.github.toLowerCase() === u.toLowerCase())?.name.split(' ').slice(0, 2).join(' ') ?? u : '-')
+  const who = (u) => (u ? members.find((m) => m.github.toLowerCase() === u.toLowerCase())?.name ?? u : '-')
   const repoLink = (r, label) => <a className="font-semibold underline" href={`https://github.com/${r}/issues`} target="_blank" rel="noreferrer">{label ?? r}</a>
 
   return (
@@ -196,7 +196,11 @@ export default function Issues() {
                       <a className="ml-2 font-semibold underline decoration-line underline-offset-2"
                         href={r.url} target="_blank" rel="noreferrer">{r.title}</a>
                     </td>
-                    <td className="whitespace-nowrap py-3 pr-4">{who(r.assignee)}</td>
+                    <td className="py-3 pr-4">
+                      {(r.assignees ?? []).length
+                        ? r.assignees.map((u) => <span key={u} className="block whitespace-nowrap">{who(u)}</span>)
+                        : '-'}
+                    </td>
                     <td className="whitespace-nowrap py-3 text-right">
                       {r.due ? r.due : '-'}
                     </td>

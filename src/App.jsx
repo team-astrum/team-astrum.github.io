@@ -28,7 +28,7 @@ export default function App() {
         <div>
           <h1 className="mt-1 text-4xl font-bold tracking-tight sm:text-5xl flex gap-2.5 items-center">
             <img src={LogoUniPD} className="h-15"></img>
-            <span className="bg-(--deco-color) h-15 w-px"></span>
+            <span className="bg-(--txt-gray) h-15 w-px"></span>
             <img src={Logo} className="h-7.5"></img>
           </h1>
           <p className="mt-2 text-sm text-(--txt-gray) mb-4">
