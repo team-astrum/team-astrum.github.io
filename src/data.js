@@ -3,26 +3,26 @@
     Ore consuntivate per persona (con totale ore per ruolo)
 */
 export const members = [
-  { name: 'Corrado Bacco', matr:'2148615', github: 'mrobotcb30', currentRole: '',
-    hours: { responsabile: 0, amministratore: 0, analista: 0, progettista: 0, programmatore: 0, verificatore: 0 } },
+  { name: 'Corrado Bacco', matr:'2148615', github: 'mrobotcb30', currentRole: 'Analista',
+    hours: { responsabile: 3, amministratore: 0, analista: 0, progettista: 0, programmatore: 0, verificatore: 0 } },
 
-  { name: 'Gianluca Bacco', matr:'2111937', github: 'GianlucaBacco', currentRole: '',
-    hours: { responsabile: 0, amministratore: 0, analista: 0, progettista: 0, programmatore: 0, verificatore: 0 } },
+  { name: 'Gianluca Bacco', matr:'2111937', github: 'GianlucaBacco', currentRole: 'Responsabile',
+    hours: { responsabile: 0, amministratore: 0, analista: 2, progettista: 0, programmatore: 0, verificatore: 0 } },
 
-  { name: 'Gianluca Brotto', matr:'2148626', github: 'Gianluca-Br', currentRole: '',
-    hours: { responsabile: 0, amministratore: 0, analista: 0, progettista: 0, programmatore: 0, verificatore: 0 } },
+  { name: 'Gianluca Brotto', matr:'2148626', github: 'Gianluca-Br', currentRole: 'Analista',
+    hours: { responsabile: 0, amministratore: 0, analista: 0, progettista: 0, programmatore: 0, verificatore: 4 } },
 
-  { name: 'Matteo De Col', matr:'2148619', github: 'vSmatt', currentRole: '',
-    hours: { responsabile: 0, amministratore: 0, analista: 0, progettista: 0, programmatore: 0, verificatore: 0 } },
+  { name: 'Matteo De Col', matr:'2148619', github: 'vSmatt', currentRole: 'Verificatore',
+    hours: { responsabile: 0, amministratore: 0, analista: 2, progettista: 0, programmatore: 0, verificatore: 0 } },
 
-  { name: 'Filippo De Guio', matr:'2113177', github: 'degghi24', currentRole: '',
-    hours: { responsabile: 0, amministratore: 0, analista: 0, progettista: 0, programmatore: 0, verificatore: 0 } },
+  { name: 'Filippo De Guio', matr:'2113177', github: 'degghi24', currentRole: 'Verificatore',
+    hours: { responsabile: 0, amministratore: 0, analista: 3, progettista: 0, programmatore: 0, verificatore: 0 } },
 
-  { name: 'Samuele Gobbi', matr:'2148004', github: 'Smoker1210', currentRole: '',
-    hours: { responsabile: 0, amministratore: 0, analista: 0, progettista: 0, programmatore: 0, verificatore: 0 } },
+  { name: 'Samuele Gobbi', matr:'2148004', github: 'Smoker1210', currentRole: 'Amministratore',
+    hours: { responsabile: 0, amministratore: 0, analista: 0, progettista: 0, programmatore: 0, verificatore: 3 } },
 
-  { name: 'Thomas Morettin', matr:'2111001', github: 'thomasmorettin', currentRole: '',
-    hours: { responsabile: 0, amministratore: 0, analista: 0, progettista: 0, programmatore: 0, verificatore: 0 } },
+  { name: 'Thomas Morettin', matr:'2111001', github: 'thomasmorettin', currentRole: 'Analista',
+    hours: { responsabile: 0, amministratore: 6, analista: 0, progettista: 0, programmatore: 0, verificatore: 0 } },
 ]
 
 /*
@@ -44,7 +44,7 @@ export const group = {
 // Milestone: progresso 0–100%
 export const milestones = [
   { id: 'Candidatura', label: null, date: '2026-10-30', progress: 100 },
-  { id: 'RTB', label: 'Requirements and Technology Baseline', date: '2027-02-19', progress: 0 },
+  { id: 'RTB', label: 'Requirements and Technology Baseline', date: '2027-02-19', progress: 3 },
   { id: 'PB', label: 'Product Baseline', date: '2027-04-16', progress: 0 },
 ]
 
@@ -52,7 +52,7 @@ export const hourBounds = { min: 80, max: 95 }    // Ore produttive per persona:
 
 // Valori cumulativi in euro: PV = pianificato, EV = conseguito, AC = speso
 export const periods = [
-  { label: 'S1', pv: 1127, ev: null, ac: null },
+  { label: 'S1', pv: 1127, ev: 490, ac: 490 },
   { label: 'S2', pv: 2254, ev: null, ac: null },
   { label: 'S3', pv: 3381, ev: null, ac: null },
   { label: 'S4', pv: 4508, ev: null, ac: null },
