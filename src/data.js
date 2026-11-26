@@ -103,6 +103,7 @@ export const utilizzi = {
 export const generalDocs = [
   { titolo: 'Glossario', descrizione: 'Definizione dei termini specifici del dominio del progetto.', file: '/glossario.pdf' },
   { titolo: 'Norme di Progetto', descrizione: 'Procedure, strumenti e regole di lavoro del gruppo (Way of Working).', file: '/norme-di-progetto.pdf' },
+  { titolo: 'Piano di Progetto', descrizione: 'Obiettivi, attività, risorse e rischi del progetto.', file: '/piano-di-progetto.pdf'},
 ]
 
 export const teamSections = ['Diari di bordo']    // Scheda visibile solamente in modalità gruppo
