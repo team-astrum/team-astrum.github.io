@@ -5,7 +5,6 @@ import Documenti from './Documenti'
 import Gruppo from './Gruppo'
 import Logo from '/public/Assets/logo.svg'
 import LogoUniPD from '/public/Assets/logo-unipd.svg'
-import LogoNatale from '/public/Assets/logo-natale.svg'
 
 const tabs = [
   { id: 'cruscotto', label: 'Dashboard', View: Dashboard },
@@ -30,7 +29,7 @@ export default function App() {
           <h1 className="mt-1 text-4xl font-bold tracking-tight sm:text-5xl flex gap-2.5 items-center">
             <img src={LogoUniPD} className="h-15"></img>
             <span className="bg-(--txt-gray) h-15 w-px"></span>
-            <img src={LogoNatale} className="h-8.75"></img>
+            <img src={Logo} className="h-7.5"></img>
           </h1>
           <p className="mt-2 text-sm text-(--txt-gray) mb-4">
             <span className="block">Progetto di Ingegneria del software</span>
